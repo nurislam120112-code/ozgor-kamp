@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ozgor Kamp — Жаштар лагери</title>
+
+  <meta
+    name="description"
+    content="Ozgor Kamp — жаштар үчүн заманбап, пайдалуу жана кызыктуу лагерь."
+  >
+
+  <meta
+    name="keywords"
+    content="Ozgor Kamp, жаштар лагери, лагерь Кыргызстан, жаштар"
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f8f5;
+      color: #17231b;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid #e8ece8;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #637267;
+      margin-top: -3px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .menu a {
+      transition: 0.2s;
+    }
+
+    .menu a:hover {
+      color: #52735a;
+    }
+
+    .nav-button {
+      padding: 11px 18px;
+      border-radius: 10px;
+      background: #17231b;
+      color: white !important;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 85% 20%, #dfe9df 0, transparent 32%),
+        radial-gradient(circle at 10% 80%, #e9eee8 0, transparent 30%),
+        #f7f8f5;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 100px 0;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #d5ddd5;
+      border-radius: 100px;
+      color: #526357;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .hero h1 {
+      font-size: clamp(54px, 9vw, 105px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #5d7963;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      font-size: 19px;
+      color: #59665c;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .button-dark {
+      background: #17231b;
+      color: white;
+    }
+
+    .button-light {
+      background: white;
+      border: 1px solid #dce2dc;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: #708073;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 5vw, 55px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      color: #667168;
+      max-width: 700px;
+      font-size: 17px;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-box {
+      padding: 35px;
+      background: #f1f4f0;
+      border-radius: 24px;
+      border: 1px solid #e3e8e2;
+    }
+
+    .about-box h3 {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .about-box p {
+      color: #657067;
+    }
+
+    /* PROGRAM */
+
+    .program-grid {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .program-card {
+      background: white;
+      border: 1px solid #e4e8e4;
+      border-radius: 20px;
+      padding: 30px;
+      min-height: 190px;
+      transition: 0.25s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(20, 35, 25, 0.08);
+    }
+
+    .number {
+      font-size: 13px;
+      color: #7a867c;
+      font-weight: 800;
+      margin-bottom: 35px;
+    }
+
+    .program-card h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .program-card p {
+      color: #707970;
+      font-size: 14px;
+    }
+
+    /* WHY */
+
+    .why {
+      background: #17231b;
+      color: white;
+    }
+
+    .why .section-label {
+      color: #b9c7ba;
+    }
+
+    .why .section-text {
+      color: #c5cec6;
+    }
+
+    .why-grid {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .why-card {
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 18px;
+      padding: 25px;
+      min-height: 170px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .why-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      color: #b9c3ba;
+      font-size: 14px;
+    }
+
+    /* REGISTRATION */
+
+    .registration {
+      background: white;
+    }
+
+    .registration-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #dce2dc;
+      border-radius: 12px;
+      outline: none;
+      font: inherit;
+      background: #fafbfa;
+    }
+
+    .form input:focus,
+    .form textarea:focus {
+      border-color: #708873;
+    }
+
+    .form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form button {
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #f0f3ef;
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      padding: 40px;
+      border-radius: 24px;
+      background: white;
+      border: 1px solid #e0e5df;
+    }
+
+    .phone {
+      display: inline-block;
+      font-size: 27px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .phone:hover {
+      color: #5d7963;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      background: #111812;
+      color: #c6cec7;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-logo {
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .footer-small {
+      font-size: 13px;
+      color: #879188;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .menu {
+        display: none;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .about-grid,
+      .registration-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .program-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .hero-content {
+        padding: 70px 0;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+      }
+
+      .hero-text {
+        font-size: 17px;
+      }
+
+      .program-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        padding: 25px;
+      }
+
+      .contact-box {
+        padding: 25px;
+      }
+
+      .phone {
+        font-size: 23px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        Ozgor Kamp
+        <span>ЖАШТАР ЛАГЕРИ</span>
+      </a>
+
+      <nav class="menu">
+        <a href="#about">Биз жөнүндө</a>
+        <a href="#program">Программа</a>
+        <a href="#registration">Катталуу</a>
+        <a href="#contact">Байланыш</a>
+        <a href="#registration" class="nav-button">
+          Катталуу
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main id="home">
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="hero-label">
+            ЖАШТАР ҮЧҮН ЗАМАНБАП ЛАГЕРЬ
+          </div>
+
+          <h1>
+            Ozgor
+            <span>Kamp</span>
+          </h1>
+
+          <p class="hero-text">
+            Жаңы достор, пайдалуу билим, командалык иштер
+            жана унутулгус күндөр бир жерде.
+          </p>
+
+          <div class="buttons">
+            <a href="#registration" class="button button-dark">
+              Лагерге катталуу
+            </a>
+
+            <a href="#about" class="button button-light">
+              Кененирээк
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div>
+            <div class="section-label">
+              Биз жөнүндө
+            </div>
+
+            <h2 class="section-title">
+              Жаштар үчүн пайдалуу жана кызыктуу чөйрө
+            </h2>
+
+            <p class="section-text">
+              Ozgor Kamp — жаштардын билим алуусуна,
+              жаңы досторду табуусуна, команда менен иштөөсүнө
+              жана өзүн өнүктүрүүсүнө шарт түзгөн лагерь.
+            </p>
+          </div>
+
+          <div class="about-box">
+            <h3>
+              Бир лагерь — көп мүмкүнчүлүк
+            </h3>
+
+            <p>
+              Бул жерде жаңы нерселерди үйрөнүп,
+              кызыктуу иш-чараларга катышып,
+              команда менен иштеп жана жакшы
+              эскерүүлөрдү топтой аласыз.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROGRAM -->
+    <section id="program">
+      <div class="container">
+
+        <div class="section-label">
+          Программа
+        </div>
+
+        <h2 class="section-title">
+          Лагерде эмне болот?
+        </h2>
+
+        <p class="section-text">
+          Ар түрдүү багыттагы пайдалуу жана кызыктуу
+          иш-чаралар жаштар үчүн атайын даярдалат.
+        </p>
+
+
+        <div class="program-grid">
+
+          <div class="program-card">
+            <div class="number">01</div>
+            <h3>Билим берүү</h3>
+            <p>
+              Пайдалуу сабактар жана жаңы маалыматтар.
+            </p>
+          </div>
+
+          <div class="program-card">
+            <div class="number">02</div>
+            <h3>Спорт</h3>
+            <p>
+              Кыймылдуу жана кызыктуу спорттук иш-чаралар.
+            </p>
+          </div>
+
+          <div class="program-card">
+            <div class="number">03</div>
+            <h3>Командалык оюндар</h3>
+            <p>
+              Биргелешкен оюндар жана командалык тапшырмалар.
+            </p>
+          </div>
+
+          <div class="program-card">
+            <div class="number">04</div>
+            <h3>Чыгармачылык</h3>
+            <p>
+              Чыгармачылык идеяларды ишке ашырууга мүмкүнчүлүк.
+            </p>
+          </div>
+
+          <div class="program-card">
+            <div class="number">05</div>
+            <h3>Талкуулар</h3>
+            <p>
+              Кызыктуу темалар боюнча пикир алмашуу.
+            </p>
+          </div>
+
+          <div class="program-card">
+            <div class="number">06</div>
+            <h3>Кызыктуу иш-чаралар</h3>
+            <p>
+              Эсте кала турган өзгөчө лагердик күндөр.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHY -->
+    <section class="why">
+      <div class="container">
+
+        <div class="section-label">
+          Эмне үчүн Ozgor Kamp?
+        </div>
+
+        <h2 class="section-title">
+          Жаңы тажрыйбага даяр бол
+        </h2>
+
+        <p class="section-text">
+          Лагерде убакытты пайдалуу өткөрүп,
+          жаңы адамдар менен таанышып,
+          жаңы көндүмдөрдү өнүктүрүүгө мүмкүнчүлүк бар.
+        </p>
+
+
+        <div class="why-grid">
+
+          <div class="why-card">
+            <h3>Жакшы атмосфера</h3>
+            <p>
+              Жаштар үчүн позитивдүү жана достук чөйрө.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <h3>Пайдалуу программа</h3>
+            <p>
+              Билим, спорт жана чыгармачылык айкалышат.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <h3>Жаңы достор</h3>
+            <p>
+              Ар кандай адамдар менен таанышууга мүмкүнчүлүк.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <h3>Командалык иштер</h3>
+            <p>
+              Биргеликте иштөө жана жаңы тажрыйба алуу.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- REGISTRATION -->
+    <section class="registration" id="registration">
+      <div class="container">
+
+        <div class="registration-grid">
+
+          <div>
+            <div class="section-label">
+              Катталуу
+            </div>
+
+            <h2 class="section-title">
+              Ozgor Kamp'ка кошул
+            </h2>
+
+            <p class="section-text">
+              Катталуу үчүн маалыматтарыңызды калтырыңыз.
+              Биз сиз менен байланышабыз.
+            </p>
+          </div>
+
+
+          <form class="form">
+
+            <input
+              type="text"
+              placeholder="Аты-жөнү"
+              required
+            >
+
+            <input
+              type="tel"
+              placeholder="Телефон номери"
+              required
+            >
+
+            <input
+              type="number"
+              placeholder="Жашы"
+              min="1"
+              max="100"
+            >
+
+            <textarea
+              placeholder="Кошумча билдирүү"
+            ></textarea>
+
+            <button
+              type="button"
+              class="button button-dark"
+              onclick="sendWhatsApp()"
+            >
+              Катталуу
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container">
+
+        <div class="contact-box">
+
+          <div>
+            <div class="section-label">
+              Байланыш
+            </div>
+
+            <h2>
+              Биз менен байланышыңыз
+            </h2>
+
+            <a
+              href="tel:+996500444459"
+              class="phone"
+            >
+              0500 444 459
+            </a>
+          </div>
+
+          <a
+            href="https://wa.me/996500444459"
+            target="_blank"
+            class="button button-dark"
+          >
+            WhatsApp аркылуу жазуу
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+
+      <div>
+        <div class="footer-logo">
+          Ozgor Kamp
+        </div>
+
+        <div class="footer-small">
+          Жаштар лагери
+        </div>
+      </div>
+
+      <div class="footer-small">
+        © 2026 Ozgor Kamp. Бардык укуктар корголгон.
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    function sendWhatsApp() {
+
+      const name =
+        document.querySelector('input[type="text"]').value;
+
+      const phone =
+        document.querySelector('input[type="tel"]').value;
+
+      const age =
+        document.querySelector('input[type="number"]').value;
+
+      const message =
+        document.querySelector('textarea').value;
+
+      const text =
+        "Ozgor Kamp'ка катталуу%0A%0A" +
+        "Аты-жөнү: " + encodeURIComponent(name) + "%0A" +
+        "Телефон: " + encodeURIComponent(phone) + "%0A" +
+        "Жашы: " + encodeURIComponent(age) + "%0A" +
+        "Билдирүү: " + encodeURIComponent(message);
+
+      window.open(
+        "https://wa.me/996500444459?text=" + text,
+        "_blank"
+      );
+    }
+  </script>
+
+</body>
+</html>
