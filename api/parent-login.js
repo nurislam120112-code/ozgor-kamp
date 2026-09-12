@@ -1,41 +1,12 @@
-const crypto = require("crypto");
-
 function normalizePhone(phone) {
   return String(phone || "").replace(/\D/g, "");
-}
-
-function base64url(input) {
-  return Buffer.from(input)
-    .toString("base64")
-    .replace(/=/g, "")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_");
-}
-
-function createSession(parentId, secret) {
-  const payload = {
-    parentId: parentId,
-    exp: Date.now() + 1000 * 60 * 60 * 24 * 7
-  };
-
-  const encodedPayload = base64url(JSON.stringify(payload));
-
-  const signature = crypto
-    .createHmac("sha256", secret)
-    .update(encodedPayload)
-    .digest("base64")
-    .replace(/=/g, "")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_");
-
-  return `${encodedPayload}.${signature}`;
 }
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
       success: false,
-      error: "Метод колдоого алынбайт"
+      error: "Бул метод колдоого алынбайт"
     });
   }
 
@@ -43,15 +14,12 @@ module.exports = async function handler(req, res) {
     const {
       SUPABASE_URL,
       SUPABASE_SERVICE_ROLE_KEY,
-      PARENT_SESSION_SECRET
+      TELEGRAM_BOT_TOKEN,
+      TELEGRAM_CHAT_ID
     } = process.env;
 
-    if (
-      !SUPABASE_URL ||
-      !SUPABASE_SERVICE_ROLE_KEY ||
-      !PARENT_SESSION_SECRET
-    ) {
-      console.error("Environment variables жетишпейт");
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+      console.error("Supabase environment variables жок");
 
       return res.status(500).json({
         success: false,
@@ -59,76 +27,102 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const phone = normalizePhone(req.body?.phone);
-    const loginCode = String(req.body?.loginCode || "").trim();
+    const childName = String(req.body?.childName || "").trim();
+    const parentPhone = String(req.body?.parentPhone || "").trim();
 
-    if (!phone || !loginCode) {
+    if (!childName || !parentPhone) {
       return res.status(400).json({
         success: false,
-        error: "Телефон жана код талап кылынат"
+        error: "Баланын аты-жөнү жана телефон номери керек"
       });
     }
 
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/parent_requests?select=id,parent_phone,status,login_code`,
+    const normalizedPhone = normalizePhone(parentPhone);
+
+    if (normalizedPhone.length < 9) {
+      return res.status(400).json({
+        success: false,
+        error: "Телефон номери туура эмес"
+      });
+    }
+
+    // 1. Supabase'ка сактайбыз
+    const supabaseResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/parent_requests`,
       {
-        method: "GET",
+        method: "POST",
+
         headers: {
           apikey: SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
-        }
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation"
+        },
+
+        body: JSON.stringify({
+          child_name: childName,
+          parent_phone: parentPhone,
+          status: "pending"
+        })
       }
     );
 
-    if (!response.ok) {
-      const errorText = await response.text();
+    if (!supabaseResponse.ok) {
+      const errorText = await supabaseResponse.text();
+
       console.error("Supabase error:", errorText);
 
       return res.status(500).json({
         success: false,
-        error: "Маалыматты текшерүүдө ката кетти"
+        error: "Арызды сактоодо ката кетти"
       });
     }
 
-    const parents = await response.json();
+    const savedRows = await supabaseResponse.json();
+    const savedRequest = savedRows[0];
 
-    const parent = parents.find((item) => {
-      const savedPhone = normalizePhone(item.parent_phone);
+    // 2. Telegram'га билдирүү жөнөтөбүз
+    if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+      try {
+        const telegramText =
+          `🟢 Жаңы ата-эне суроо жөнөттү\n\n` +
+          `👦 Бала: ${childName}\n` +
+          `📞 Телефон: ${parentPhone}\n` +
+          `⏳ Статус: Күтүүдө\n` +
+          `🆔 ID: ${savedRequest?.id || "-"}`;
 
-      return (
-        savedPhone === phone &&
-        String(item.login_code || "").trim() === loginCode &&
-        item.status === "approved"
-      );
-    });
+        const telegramResponse = await fetch(
+          `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+          {
+            method: "POST",
 
-    if (!parent) {
-      return res.status(401).json({
-        success: false,
-        error: "Телефон, код туура эмес же уруксат бериле элек"
-      });
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              chat_id: TELEGRAM_CHAT_ID,
+              text: telegramText
+            })
+          }
+        );
+
+        if (!telegramResponse.ok) {
+          const telegramError = await telegramResponse.text();
+          console.error("Telegram error:", telegramError);
+        }
+      } catch (telegramError) {
+        console.error("Telegram send error:", telegramError);
+      }
     }
-
-    const sessionToken = createSession(
-      parent.id,
-      PARENT_SESSION_SECRET
-    );
-
-    res.setHeader(
-      "Set-Cookie",
-      `ozgor_parent_session=${sessionToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`
-    );
 
     return res.status(200).json({
       success: true,
-
-      // parents.html азыр ката бербеши үчүн.
-      // Негизги коопсуздук HttpOnly cookie аркылуу болот.
-      accessToken: "session-created"
+      message: "Суроо ийгиликтүү жөнөтүлдү"
     });
 
   } catch (error) {
-    console.error("Parent login error:", error);
+    console.error("Parent request error:", error);
 
     return res.status(500).json({
       success: false,
