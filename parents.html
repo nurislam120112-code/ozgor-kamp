@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ozgor Kamp — Ата-энелер кабинети</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, #dceee0 0, transparent 35%),
+        #f4f7f3;
+      color: #142016;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #e1e6e1;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .logo small {
+      display: block;
+      margin-top: 5px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #738076;
+    }
+
+    .back {
+      font-size: 14px;
+      font-weight: 700;
+      color: #46644d;
+    }
+
+    main {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .login-grid {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .intro span {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 900;
+      color: #568061;
+      margin-bottom: 16px;
+    }
+
+    .intro h1 {
+      font-size: clamp(45px, 7vw, 75px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .intro p {
+      max-width: 570px;
+      color: #667169;
+      font-size: 17px;
+    }
+
+    .login-box {
+      background: white;
+      border: 1px solid #dfe5df;
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 20px 50px rgba(20,45,27,0.08);
+    }
+
+    .login-box h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .login-box > p {
+      color: #6d776f;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 54px;
+      border: 1px solid #d7dfd7;
+      border-radius: 12px;
+      padding: 0 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fbfcfb;
+    }
+
+    .field input:focus {
+      border-color: #56805f;
+      box-shadow: 0 0 0 3px rgba(86,128,95,0.10);
+    }
+
+    .login-btn {
+      width: 100%;
+      height: 54px;
+      border: none;
+      border-radius: 13px;
+      background: #183b25;
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .login-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .error {
+      background: #fff0f0;
+      border: 1px solid #efcccc;
+      color: #9a3030;
+    }
+
+    .success {
+      background: #e7f6e9;
+      border: 1px solid #c1e2c6;
+      color: #255c2f;
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #788079;
+      text-align: center;
+    }
+
+    @media(max-width: 850px) {
+      .login-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 560px) {
+      main {
+        padding: 35px 0;
+      }
+
+      .login-box {
+        padding: 25px 20px;
+      }
+
+      .intro h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="index.html" class="logo">
+      Ozgor Kamp
+      <small>ЖАШТАР ЛАГЕРИ</small>
+    </a>
+
+    <a href="index.html" class="back">
+      ← Башкы бет
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+  <div class="container">
+
+    <div class="login-grid">
+
+      <div class="intro">
+
+        <span>АТА-ЭНЕЛЕР КАБИНЕТИ</span>
+
+        <h1>
+          Балаңыз тууралуу
+          күнүмдүк маалымат
+        </h1>
+
+        <p>
+          Бул бөлүм Ozgor Kamp администрациясы тарабынан
+          уруксат берилген ата-энелер үчүн гана иштейт.
+          Киргенден кийин лагердин күнүмдүк маалыматтарын көрөсүз.
+        </p>
+
+      </div>
+
+
+      <div class="login-box">
+
+        <h2>Кабинетке кирүү</h2>
+
+        <p>
+          Телефон номериңизди жана администрация берген жеке кодду жазыңыз.
+        </p>
+
+        <form id="loginForm">
+
+          <div class="field">
+            <label for="phone">Телефон номери</label>
+
+            <input
+              id="phone"
+              type="tel"
+              placeholder="0700 123 456"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="loginCode">Жеке кирүү коду</label>
+
+            <input
+              id="loginCode"
+              type="password"
+              placeholder="Кирүү коду"
+              required
+            >
+          </div>
+
+
+          <button
+            id="loginButton"
+            type="submit"
+            class="login-btn"
+          >
+            Кирүү
+          </button>
+
+
+          <div id="errorMessage" class="message error">
+            Телефон номери же кирүү коду туура эмес.
+          </div>
+
+          <div id="successMessage" class="message success">
+            Кирүүгө уруксат берилди.
+          </div>
+
+        </form>
+
+
+        <div class="note">
+          Эгер сизге кирүү коду бериле элек болсо,
+          башкы беттен кирүүгө суроо жөнөтүңүз.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+
+<script>
+  const form = document.getElementById("loginForm");
+  const loginButton = document.getElementById("loginButton");
+  const errorMessage = document.getElementById("errorMessage");
+  const successMessage = document.getElementById("successMessage");
+
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    errorMessage.style.display = "none";
+    successMessage.style.display = "none";
+
+    const phone =
+      document.getElementById("phone").value.trim();
+
+    const loginCode =
+      document.getElementById("loginCode").value.trim();
+
+    if (!phone || !loginCode) {
+      errorMessage.textContent =
+        "Телефон номерин жана кирүү кодун толтуруңуз.";
+
+      errorMessage.style.display = "block";
+      return;
+    }
+
+    loginButton.disabled = true;
+    loginButton.textContent = "Текшерилүүдө...";
+
+    try {
+      const response = await fetch("/api/parent-login", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          phone: phone,
+          loginCode: loginCode
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.error || "Кирүүгө уруксат жок"
+        );
+      }
+
+      sessionStorage.setItem(
+        "ozgor_parent_access",
+        data.accessToken
+      );
+
+      successMessage.style.display = "block";
+
+      setTimeout(function() {
+        window.location.href = "dashboard.html";
+      }, 700);
+
+    } catch (error) {
+      errorMessage.textContent =
+        "Телефон номери же кирүү коду туура эмес, же сизге уруксат бериле элек.";
+
+      errorMessage.style.display = "block";
+
+    } finally {
+      loginButton.disabled = false;
+      loginButton.textContent = "Кирүү";
+    }
+  });
+</script>
+
+</body>
+</html>
