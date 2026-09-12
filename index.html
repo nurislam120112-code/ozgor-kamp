@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ozgor Kamp — Жаштар лагери</title>
+  <meta name="description" content="Ozgor Kamp — жаштар үчүн заманбап жана пайдалуу лагерь.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f9f6;
+      color: #142016;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid #e5e9e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .logo small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 3px;
+      margin-top: 7px;
+      color: #738076;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: #54805d;
+    }
+
+    .nav-btn {
+      background: #183b25;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 12px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 35px 0 70px;
+    }
+
+    .hero-box {
+      min-height: 570px;
+      border-radius: 32px;
+      border: 1px solid #dfe7df;
+      padding: 65px 55px;
+
+      display: flex;
+      align-items: center;
+
+      background:
+        radial-gradient(circle at 90% 20%, #cfe9d4 0%, transparent 34%),
+        radial-gradient(circle at 70% 100%, #e4f1e6 0%, transparent 40%),
+        linear-gradient(135deg,#ffffff,#eef5ee);
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: white;
+      border: 1px solid #d3ddd4;
+      padding: 8px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(65px,10vw,110px);
+      line-height: .83;
+      letter-spacing: -7px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: #579063;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 18px;
+      color: #647067;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 21px;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: #183b25;
+      color: white;
+    }
+
+    .btn-light {
+      background: white;
+      border: 1px solid #dce3dc;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .label {
+      color: #588062;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .title {
+      max-width: 760px;
+      font-size: clamp(35px,5vw,55px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .description {
+      max-width: 760px;
+      color: #68736a;
+      font-size: 17px;
+    }
+
+    /* PROGRAM */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e0e6e0;
+      border-radius: 22px;
+      padding: 29px;
+      min-height: 210px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(20,50,28,.08);
+    }
+
+    .number {
+      width: 42px;
+      height: 42px;
+      background: #e6f1e8;
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #477151;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 9px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #6b756d;
+      font-size: 14px;
+    }
+
+    /* PARENTS */
+
+    .parents {
+      background: #132c1b;
+      color: white;
+    }
+
+    .parents-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .parents .description {
+      color: #b8c5ba;
+    }
+
+    .parent-panel {
+      background: white;
+      color: #142016;
+      padding: 34px;
+      border-radius: 26px;
+    }
+
+    .parent-panel h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .parent-panel > p {
+      color: #69746b;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .parent-login {
+      display: block;
+      text-align: center;
+      width: 100%;
+      background: #183b25;
+      color: white;
+      padding: 15px;
+      border-radius: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .parent-note {
+      font-size: 12px !important;
+      text-align: center;
+      margin: 0 !important;
+      color: #788079 !important;
+    }
+
+    /* REQUEST */
+
+    .request-section {
+      background: #edf4ed;
+    }
+
+    .request-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .form-box {
+      background: white;
+      padding: 34px;
+      border-radius: 25px;
+      border: 1px solid #dfe6df;
+      box-shadow: 0 20px 50px rgba(20,45,27,.07);
+    }
+
+    .form-box h3 {
+      font-size: 27px;
+      margin-bottom: 7px;
+    }
+
+    .form-info {
+      color: #707a72;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 53px;
+      border: 1px solid #d6ded6;
+      background: #fbfcfb;
+      border-radius: 12px;
+      padding: 0 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: #55815e;
+      box-shadow: 0 0 0 3px rgba(85,129,94,.1);
+    }
+
+    .submit {
+      width: 100%;
+      height: 54px;
+      border: none;
+      background: #183b25;
+      color: white;
+      border-radius: 13px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .submit:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    .success {
+      background: #e7f6e9;
+      border: 1px solid #c1e2c6;
+      color: #255c2f;
+    }
+
+    .error {
+      background: #fff0f0;
+      border: 1px solid #efcccc;
+      color: #9a3030;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: white;
+    }
+
+    .contact-box {
+      margin-top: 35px;
+      padding: 35px;
+      border-radius: 24px;
+      background: #f2f6f2;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .phone {
+      font-size: 24px;
+      font-weight: 900;
+      color: #315d3b;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #0d1e12;
+      color: white;
+      padding: 45px 0;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      color: #aab6ac;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:850px) {
+
+      nav {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .parents-grid,
+      .request-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box {
+        min-height: 500px;
+        padding: 50px 30px;
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .container {
+        width: 91%;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .hero {
+        padding: 22px 0 55px;
+      }
+
+      .hero-box {
+        border-radius: 23px;
+        padding: 42px 22px;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+        letter-spacing: -4px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .title {
+        letter-spacing: -1px;
+      }
+
+      .form-box,
+      .parent-panel {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a class="logo" href="#">
+      Ozgor Kamp
+      <small>ЖАШТАР ЛАГЕРИ</small>
+    </a>
+
+    <nav>
+      <a href="#about">Биз жөнүндө</a>
+      <a href="#program">Программа</a>
+      <a href="#parents">Ата-энелер</a>
+      <a href="#contact">Байланыш</a>
+      <a class="nav-btn" href="#request">Катталуу</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="hero-box">
+
+        <div class="hero-content">
+
+          <div class="badge">
+            ЖАШТАР ҮЧҮН ЗАМАНБАП ЛАГЕРЬ
+          </div>
+
+          <h1>
+            Ozgor<br>
+            <span>Kamp</span>
+          </h1>
+
+          <p>
+            Жаңы достор, пайдалуу билим, командалык иштер,
+            чыгармачылык жана унутулгус күндөр бир жерде.
+          </p>
+
+          <div class="buttons">
+
+            <a href="#request" class="btn btn-dark">
+              Лагерге катталуу
+            </a>
+
+            <a href="#parents" class="btn btn-light">
+              Ата-энелер үчүн
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="container">
+
+      <div class="label">
+        Биз жөнүндө
+      </div>
+
+      <h2 class="title">
+        Жаштардын өнүгүүсү үчүн түзүлгөн өзгөчө чөйрө
+      </h2>
+
+      <p class="description">
+        Ozgor Kamp — жаштардын пайдалуу эс алуусу,
+        жаңы нерселерди үйрөнүүсү, командада иштөөсү
+        жана өз жөндөмдөрүн өнүктүрүүсү үчүн түзүлгөн лагерь.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- PROGRAM -->
+
+  <section id="program">
+    <div class="container">
+
+      <div class="label">
+        Программа
+      </div>
+
+      <h2 class="title">
+        Ар бир күн пайдалуу жана кызыктуу
+      </h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="number">01</div>
+          <h3>Билим берүү</h3>
+          <p>
+            Пайдалуу сабактар жана өнүгүүгө багытталган программалар.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">02</div>
+          <h3>Спорт</h3>
+          <p>
+            Спорттук оюндар жана активдүү эс алуу.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">03</div>
+          <h3>Командалык оюндар</h3>
+          <p>
+            Бирге иштөөгө жана бири-бирин колдоого үйрөтүүчү оюндар.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">04</div>
+          <h3>Чыгармачылык</h3>
+          <p>
+            Ар бир катышуучунун чыгармачылык жөндөмүн өнүктүрүү.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">05</div>
+          <h3>Талкуулар</h3>
+          <p>
+            Жаштар үчүн пайдалуу темалардагы жолугушуулар.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">06</div>
+          <h3>Кызыктуу күндөр</h3>
+          <p>
+            Эсте кала турган лагердик программалар жана иш-чаралар.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PARENTS -->
+
+  <section id="parents" class="parents">
+    <div class="container">
+
+      <div class="parents-grid">
+
+        <div>
+
+          <div class="label">
+            Ата-энелер үчүн
+          </div>
+
+          <h2 class="title">
+            Балаңыздын лагердеги күндөрүнөн кабардар болуңуз
+          </h2>
+
+          <p class="description">
+            Катталган жана администрация тарабынан уруксат берилген
+            ата-энелер үчүн өзүнчө жабык бөлүм иштейт.
+            Ал жерден лагердин күнүмдүк маалыматтарын көрө аласыз.
+          </p>
+
+        </div>
+
+
+        <div class="parent-panel">
+
+          <h3>Ата-энелер кабинети</h3>
+
+          <p>
+            Бул бөлүмгө администрация уруксат берген
+            ата-энелер гана кире алышат.
+          </p>
+
+          <a href="parents.html" class="parent-login">
+            Кабинетке кирүү
+          </a>
+
+          <p class="parent-note">
+            Кирүү үчүн телефон номери жана жеке код талап кылынат.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- REQUEST -->
+
+  <section id="request" class="request-section">
+    <div class="container">
+
+      <div class="request-grid">
+
+        <div>
+
+          <div class="label">
+            Кирүүгө суроо
+          </div>
+
+          <h2 class="title">
+            Ата-энелер үчүн кирүүгө уруксат алыңыз
+          </h2>
+
+          <p class="description">
+            Балаңыздын аты-жөнүн жана телефон номериңизди жазыңыз.
+            Суроо түздөн-түз администрацияга жөнөтүлөт.
+          </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+          <h3>Суроо жөнөтүү</h3>
+
+          <p class="form-info">
+            Маалыматтарды туура толтуруңуз.
+          </p>
+
+          <form id="parentForm">
+
+            <div class="field">
+
+              <label for="childName">
+                Баланын аты-жөнү
+              </label>
+
+              <input
+                type="text"
+                id="childName"
+                placeholder="Баланын аты-жөнү"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="parentPhone">
+                Ата-эненин телефон номери
+              </label>
+
+              <input
+                type="tel"
+                id="parentPhone"
+                placeholder="0700 123 456"
+                required
+              >
+
+            </div>
+
+
+            <button
+              id="submitButton"
+              type="submit"
+              class="submit"
+            >
+              Суроо жөнөтүү
+            </button>
+
+
+            <div id="successMessage" class="message success">
+              Сурооңуз ийгиликтүү жөнөтүлдү.
+              Администрация текшергенден кийин сизге уруксат берилет.
+            </div>
+
+
+            <div id="errorMessage" class="message error">
+              Суроо жөнөтүлгөн жок. Кайра аракет кылыңыз.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="label">
+        Байланыш
+      </div>
+
+      <h2 class="title">
+        Суроолоруңуз болсо биз менен байланышыңыз
+      </h2>
+
+      <div class="contact-box">
+
+        <div>
+          <h3>Ozgor Kamp</h3>
+          <p>Телефон жана WhatsApp аркылуу байланышсаңыз болот.</p>
+        </div>
+
+        <a
+          href="tel:+996500444459"
+          class="phone"
+        >
+          0500 444 459
+        </a>
+
+        <a
+          href="https://wa.me/996500444459"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-dark"
+        >
+          WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div class="logo">
+      Ozgor Kamp
+      <small>ЖАШТАР ЛАГЕРИ</small>
+    </div>
+
+    <p>
+      © 2026 Ozgor Kamp. Бардык укуктар корголгон.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+  const form = document.getElementById("parentForm");
+
+  const submitButton =
+    document.getElementById("submitButton");
+
+  const successMessage =
+    document.getElementById("successMessage");
+
+  const errorMessage =
+    document.getElementById("errorMessage");
+
+
+  form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    successMessage.style.display = "none";
+    errorMessage.style.display = "none";
+
+
+    const childName =
+      document.getElementById("childName")
+      .value
+      .trim();
+
+
+    const parentPhone =
+      document.getElementById("parentPhone")
+      .value
+      .trim();
+
+
+    if (!childName || !parentPhone) {
+
+      errorMessage.textContent =
+        "Баланын аты-жөнүн жана телефон номерин толтуруңуз.";
+
+      errorMessage.style.display = "block";
+
+      return;
+    }
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+      "Жөнөтүлүүдө...";
+
+
+    try {
+
+      const response =
+        await fetch("/api/parent-request", {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+
+            childName: childName,
+
+            parentPhone: parentPhone
+
+          })
+
+        });
+
+
+      const data =
+        await response.json();
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.error || "Ката кетти"
+        );
+
+      }
+
+
+      successMessage.style.display =
+        "block";
+
+
+      form.reset();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      errorMessage.textContent =
+        "Суроо жөнөтүлгөн жок. Кайра аракет кылыңыз.";
+
+      errorMessage.style.display =
+        "block";
+
+
+    } finally {
+
+      submitButton.disabled =
+        false;
+
+      submitButton.textContent =
+        "Суроо жөнөтүү";
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
